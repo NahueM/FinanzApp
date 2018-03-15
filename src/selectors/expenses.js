@@ -1,6 +1,7 @@
 //get visible expenses
 import moment from 'moment';
 
+moment.locale('es');
 
 export default (expenses, { text, sortBy, startDate, endDate }) => {
     return expenses.filter((expense) => {
