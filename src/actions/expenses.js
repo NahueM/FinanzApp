@@ -9,13 +9,13 @@ export const addExpense = expense => ({
 
 
 export const startAddExpense = (expense, dispatch) => {
- 
-    database.ref('expenses').push(expense).then( (ref)=> {
-        dispatch(addExpense({id : ref.key, ...expense}));
+
+    database.ref('expenses').push(expense).then((ref) => {
+        dispatch(addExpense({ id: ref.key, ...expense }));
     })
-     .catch((err) => {
-       console.log(err);
-    });
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 
@@ -24,6 +24,19 @@ export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return dispatch => {
+        return database.ref(`expenses/${id}`)
+            .remove()
+            .then(() => {
+                dispatch(removeExpense({ id }))
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+}
 
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
@@ -40,7 +53,7 @@ export const setExpenses = expenses => ({
 
 export const startSetExpenses = () => {
     return dispatch => {
-       return database.ref('expenses').once('value').then(snapshot => {
+        return database.ref('expenses').once('value').then(snapshot => {
             const expenses = [];
 
             snapshot.forEach(cs => {
@@ -51,8 +64,8 @@ export const startSetExpenses = () => {
             });
             dispatch(setExpenses(expenses))
         })
-        .catch((err) => {
-            console.log(err);
-         });
+            .catch((err) => {
+                console.log(err);
+            });
     }
 }
