@@ -6,9 +6,8 @@ import { startLogout } from '../actions/auth';
 const Header = ({ startLogout }) => (
     <header>
         <h1> FinanzApp </h1>
-        <NavLink to="/" activeClassName="is-active" exact={true}>Home</NavLink>
+        <NavLink to="/dashboard" activeClassName="is-active">Home</NavLink>
         <NavLink to="/create" activeClassName="is-active"> Agregar Gasto</NavLink>
-        <NavLink to="/help" activeClassName="is-active"> Pagina de Ayuda</NavLink> 
         <button onClick={startLogout}>Logout</button>
     </header>
 );

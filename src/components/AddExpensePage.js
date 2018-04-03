@@ -4,16 +4,17 @@ import ExpenseForm from './ExpenseForm';
 import { startAddExpense } from '../actions/expenses.js';
 
 
-const AddExpensePage = (props) => (
+const AddExpensePage = (props) => {
+    return (
     <div>
         <h1>Add Expense</h1>
         <ExpenseForm
             onSubmit={(expense) => {
-                startAddExpense(expense, props.dispatch)
+                props.dispatch(startAddExpense(expense, props.dispatch))
                 props.history.push('/');
             }}
         />
     </div>
-);
+)};
 
 export default connect()(AddExpensePage);
