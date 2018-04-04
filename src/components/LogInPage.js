@@ -4,8 +4,12 @@ import { startLogin } from '../actions/auth';
 
 
 export const LoginPage = ({ startLogin }) => (
-    <div>
-        <button onClick={startLogin}>Log In</button>
+    <div className="box-layout">
+        <div className="box-layout__box">
+            <h1 className="box-layout__title">FinanzApp</h1>
+            <p>Es hora de tener tus gastos bajo control.</p>
+            <button className="button" onClick={startLogin}>Iniciar con Google</button>
+        </div>
     </div>
 );
 
