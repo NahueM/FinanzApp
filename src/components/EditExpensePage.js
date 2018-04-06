@@ -1,24 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ExpenseForm from './ExpenseForm'; 
+import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 const EditExpensePage = (props) => {
-    return(
+    return (
         <div>
-            <ExpenseForm 
-                expense = {props.expense}
-                onSubmit={expense => {
-                    props.dispatch(startEditExpense(props.expense.id, expense));
-                    props.history.push('/');
-                }}
-            /> 
-            <button onClick= {(expense) => {
-                props.dispatch(startRemoveExpense({ id: props.expense.id }));
-                props.history.push('/');
-            }}> Eliminar </button>           
+            <div className="page-header">
+                <div className="content-container">
+                    <h1 className="page-header__title">Editar Gasto</h1>
+                </div>
+            </div>
+            <div className="content-container">
+                <ExpenseForm
+                    expense={props.expense}
+                    onSubmit={expense => {
+                        props.dispatch(startEditExpense(props.expense.id, expense));
+                        props.history.push('/');
+                    }}
+                />
+                <div>
+                    <button className="button button--secondary" onClick={(expense) => {
+                        props.dispatch(startRemoveExpense({ id: props.expense.id }));
+                        props.history.push('/');
+                    }}> Eliminar </button>
+
+                </div>
+            </div>
         </div>
-    );    
+    );
 };
 
 const mapStateToProps = (state, props) => {
